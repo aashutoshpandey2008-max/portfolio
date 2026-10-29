@@ -1,21 +1,13 @@
-fetch("https://portfolio-0g3n.onrender.com/api/projects")
-    .then(response => response.json())
-    .then(projects => {
-
-        const projectSection =
-            document.getElementById("project-list");
-
-        projects.forEach(project => {
-
-            projectSection.innerHTML += `
-                <div class="card">
-                    <h3>${project.title}</h3>
-                    <p>${project.description}</p>
-                </div>
-            `;
-        });
-
-    })
-    .catch(error => {
-        console.log(error);
+// Project cards are curated in index.html so the portfolio stays usable even if the API is offline.
+document.addEventListener("DOMContentLoaded", () => {
+  const links = document.querySelectorAll('a[href^="#"]');
+  links.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const target = document.querySelector(link.getAttribute("href"));
+      if (target) {
+        event.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     });
+  });
+});
